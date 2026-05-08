@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiPro Agency | وكالة التسويق الرقمي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --primary: #00d4ff;
+    --secondary: #ff6b35;
+    --accent: #7c3aed;
+    --dark: #050b18;
+    --dark2: #0a1628;
+    --dark3: #0f2040;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --glow: 0 0 30px rgba(0,212,255,0.3);
+    --glow2: 0 0 30px rgba(255,107,53,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ===== ANIMATED BACKGROUND ===== */
+  .bg-animated {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .bg-animated::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    animation: floatBg 8s ease-in-out infinite;
+  }
+  .bg-animated::after {
+    content: '';
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+    bottom: -150px; left: -150px;
+    animation: floatBg 10s ease-in-out infinite reverse;
+  }
+  @keyframes floatBg {
+    0%, 100% { transform: translate(0,0); }
+    50% { transform: translate(40px, 40px); }
+  }
+
+  .grid-bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    z-index: 0;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(5,11,24,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0,212,255,0.15);
+    padding: 0 5%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+  }
+  .logo span { color: var(--secondary); -webkit-text-fill-color: var(--secondary); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0; right: 0;
+    height: 2px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .btn-nav {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s !important;
+    -webkit-text-fill-color: white !important;
+  }
+  .btn-nav:hover { transform: translateY(-2px); box-shadow: var(--glow) !important; }
+  .btn-nav::after { display: none !important; }
+
+  /* ===== HERO ===== */
+  #hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 5% 60px;
+    overflow: hidden;
+  }
+
+  .hero-content { max-width: 700px; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.3);
+    color: var(--primary);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,212,255,0.3); }
+    50% { box-shadow: 0 0 0 10px rgba(0,212,255,0); }
+  }
+
+  h1 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  h1 .highlight {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    max-width: 560px;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: var(--glow); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid rgba(0,212,255,0.4);
+    color: var(--primary);
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s;
+  }
+  .btn-outline:hover { background: rgba(0,212,255,0.1); border-color: var(--primary); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+  }
+  .stat-label { font-size: 0.85rem; color: var(--text-muted); }
+
+  /* Floating icons hero */
+  .hero-visual {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    opacity: 0.7;
+  }
+  .float-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    animation: floatIcon 3s ease-in-out infinite;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .float-icon:nth-child(2) { animation-delay: 0.5s; }
+  .float-icon:nth-child(3) { animation-delay: 1s; }
+  .float-icon:nth-child(4) { animation-delay: 1.5s; }
+  .float-icon:nth-child(5) { animation-delay: 2s; }
+  @keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  .fi-fb { background: rgba(24,119,242,0.2); color: #1877f2; }
+  .fi-ig { background: rgba(225,48,108,0.2); color: #e1306c; }
+  .fi-tt { background: rgba(0,0,0,0.3); color: #fff; }
+  .fi-yt { background: rgba(255,0,0,0.2); color: #ff0000; }
+  .fi-snap { background: rgba(255,252,0,0.2); color: #fffc00; }
+
+  /* ===== SECTION COMMON ===== */
+  section { position: relative; z-index: 1; padding: 100px 5%; }
+
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-tag {
+    display: inline-block;
+    background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.25);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .section-title {
+    font-family: 'Tajawal', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .section-title .c { color: var(--primary); }
+  .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.8; }
+
+  /* ===== SERVICES ===== */
+  #services { background: var(--dark2); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(0,212,255,0.04));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.3); box-shadow: var(--glow); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  .service-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: white;
+  }
+  .service-card p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; }
+
+  .service-card .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 1.2rem;
+  }
+  .service-card .tag {
+    background: rgba(0,212,255,0.08);
+    color: var(--primary);
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* ===== SOCIAL MEDIA ===== */
+  #social { background: var(--dark); }
+
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .platform-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .platform-card:hover { transform: scale(1.05); }
+  .platform-card i { font-size: 2.2rem; margin-bottom: 0.8rem; display: block; }
+  .platform-card span { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+  .pc-fb { border-color: rgba(24,119,242,0.3); }
+  .pc-fb:hover { box-shadow: 0 0 20px rgba(24,119,242,0.3); }
+  .pc-fb i { color: #1877f2; }
+  .pc-ig { border-color: rgba(225,48,108,0.3); }
+  .pc-ig:hover { box-shadow: 0 0 20px rgba(225,48,108,0.3); }
+  .pc-ig i { color: #e1306c; }
+  .pc-tt { border-color: rgba(100,100,100,0.3); }
+  .pc-tt:hover { box-shadow: 0 0 20px rgba(100,100,100,0.3); }
+  .pc-tt i { color: #fff; }
+  .pc-yt { border-color: rgba(255,0,0,0.3); }
+  .pc-yt:hover { box-shadow: 0 0 20px rgba(255,0,0,0.3); }
+  .pc-yt i { color: #ff0000; }
+  .pc-snap { border-color: rgba(255,252,0,0.3); }
+  .pc-snap:hover { box-shadow: 0 0 20px rgba(255,252,0,0.3); }
+  .pc-snap i { color: #fffc00; }
+  .pc-tw { border-color: rgba(29,161,242,0.3); }
+  .pc-tw:hover { box-shadow: 0 0 20px rgba(29,161,242,0.3); }
+  .pc-tw i { color: #1da1f2; }
+
+  /* ===== PACKAGES ===== */
+  #packages { background: var(--dark2); }
+
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .pkg-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pkg-card.featured {
+    border-color: var(--primary);
+    box-shadow: var(--glow);
+    transform: scale(1.03);
+  }
+  .pkg-card:hover { transform: translateY(-6px); }
+  .pkg-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+
+  .pkg-badge {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .pkg-icon {
+    width: 70px; height: 70px;
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    margin: 1rem auto 1.5rem;
+  }
+  .pkg-name {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+  }
+  .pkg-desc { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .pkg-price {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1;
+  }
+  .pkg-price span { font-size: 1.2rem; }
+  .pkg-period { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 2rem; }
+
+  .pkg-features { list-style: none; margin-bottom: 2rem; text-align: right; }
+  .pkg-features li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.92rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pkg-features li i { color: var(--primary); font-size: 0.85rem; }
+
+  .btn-pkg {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    font-family: 'Cairo', sans-serif;
+  }
+  .btn-pkg-outline {
+    background: transparent;
+    border: 2px solid rgba(0,212,255,0.4);
+    color: var(--primary);
+  }
+  .btn-pkg-outline:hover { background: rgba(0,212,255,0.1); }
+  .btn-pkg-filled {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+  }
+  .btn-pkg-filled:hover { opacity: 0.9; transform: scale(1.02); }
+
+  /* ===== PAYMENT ===== */
+  #payment { background: var(--dark); }
+
+  .payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+
+  .pay-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s;
+    min-width: 200px;
+  }
+  .pay-card:hover { transform: translateY(-4px); border-color: rgba(0,212,255,0.3); }
+  .pay-icon { font-size: 2rem; }
+  .pay-info strong { display: block; font-size: 1rem; margin-bottom: 2px; }
+  .pay-info small { color: var(--text-muted); font-size: 0.82rem; }
+
+  .pay-binance-id {
+    text-align: center;
+    background: var(--dark3);
+    border: 1px solid rgba(240,185,11,0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 2rem auto;
+  }
+  .pay-binance-id .binance-logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #f0b90b;
+    margin-bottom: 1rem;
+  }
+  .pay-id-box {
+    background: rgba(240,185,11,0.1);
+    border: 1px solid rgba(240,185,11,0.3);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    font-family: monospace;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    color: #f0b90b;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .pay-id-box:hover { background: rgba(240,185,11,0.15); }
+  .pay-id-box small { display: block; font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; letter-spacing: 1px; font-family: 'Cairo'; }
+
+  /* ===== CONTACT ===== */
+  #contact { background: var(--dark2); }
+
+  .contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .contact-info h3 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .contact-info p { color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+
+  .contact-items { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 1rem 1.5rem;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .contact-item:hover { border-color: rgba(0,212,255,0.3); transform: translateX(-4px); }
+  .contact-item .ci-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .contact-item .ci-text strong { display: block; font-size: 0.95rem; }
+  .contact-item .ci-text span { color: var(--text-muted); font-size: 0.85rem; }
+
+  .contact-form {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+  .contact-form h3 {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.88rem; color: var(--text-muted); margin-bottom: 6px; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--primary); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-group select option { background: var(--dark2); }
+
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: var(--glow); }
+
+  /* ===== SUPPORT ===== */
+  #support { background: var(--dark); }
+
+  .support-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .support-card {
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+  .support-card:hover { transform: translateY(-6px); }
+  .support-card .sc-icon {
+    width: 64px; height: 64px;
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 1.2rem;
+  }
+  .support-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .support-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    position: relative;
+    z-index: 1;
+    background: var(--dark2);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 3rem 5% 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand .logo { margin-bottom: 1rem; display: block; }
+  .footer-brand p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+  .footer-socials { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+  .footer-socials a {
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+  .footer-socials a:hover { color: var(--primary); border-color: var(--primary); }
+
+  .footer-col h5 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    color: white;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.7rem; }
+  .footer-col ul li a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    transition: color 0.3s;
+  }
+  .footer-col ul li a:hover { color: var(--primary); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-bottom p { color: var(--text-muted); font-size: 0.85rem; }
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    z-index: 9999;
+    transition: transform 0.4s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .hero-visual { display: none; }
+  }
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    nav .nav-links { display: none; }
+  }
+
+  /* ===== SCROLL ANIMATION ===== */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-animated"></div>
+<div class="grid-bg"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">DigiPro<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">الخدمات</a></li>
+    <li><a href="#social">منصات</a></li>
+    <li><a href="#packages">الباقات</a></li>
+    <li><a href="#payment">الدفع</a></li>
+    <li><a href="#contact">تواصل</a></li>
+    <li><a href="#contact" class="btn-nav">ابدأ الآن</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-visual">
+    <div class="float-icon fi-fb"><i class="fab fa-facebook-f"></i></div>
+    <div class="float-icon fi-ig"><i class="fab fa-instagram"></i></div>
+    <div class="float-icon fi-tt"><i class="fab fa-tiktok"></i></div>
+    <div class="float-icon fi-yt"><i class="fab fa-youtube"></i></div>
+    <div class="float-icon fi-snap"><i class="fab fa-snapchat"></i></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <i class="fas fa-rocket"></i>
+      وكالة التسويق الرقمي #1
+    </div>
+    <h1>
+      نطور أعمالك<br>
+      <span class="highlight">في العالم الرقمي</span>
+    </h1>
+    <p class="hero-desc">
+      نقدم لك حلولاً متكاملة في التسويق الرقمي، إعلانات فيسبوك وإنستاجرام، التجارة الإلكترونية، تصميم الفيديوهات، وإدارة وسائل التواصل الاجتماعي.
+    </p>
+    <div class="hero-btns">
+      <a href="#packages" class="btn-primary">
+        <i class="fas fa-star"></i>
+        استعرض الباقات
+      </a>
+      <a href="#contact" class="btn-outline">
+        <i class="fab fa-whatsapp"></i>
+        تواصل معنا
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">عميل راضٍ</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3K+</div>
+        <div class="stat-label">مشروع منجز</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">99%</div>
+        <div class="stat-label">رضا العملاء</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header fade-up">
+    <span class="section-tag"><i class="fas fa-cogs"></i> خدماتنا</span>
+    <h2 class="section-title">كل ما تحتاجه في مكان <span class="c">واحد</span></h2>
+    <p class="section-sub">نقدم طيفاً واسعاً من الخدمات الرقمية المتخصصة لمساعدتك على النمو والتوسع</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:rgba(24,119,242,0.15); color:#1877f2;">
+        <i class="fab fa-facebook-f"></i>
+      </div>
+      <h3>إعلانات فيسبوك</h3>
+      <p>إدارة احترافية لحملات الإعلانات المدفوعة على فيسبوك، استهداف دقيق وتحليل مستمر لتحقيق أفضل عائد على الاستثمار.</p>
+      <div class="tags">
+        <span class="tag">Meta Ads</span>
+        <span class="tag">استهداف دقيق</span>
+        <span class="tag">ROI عالي</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:rgba(225,48,108,0.15); color:#e1306c;">
+        <i class="fab fa-instagram"></i>
+      </div>
+      <h3>إعلانات إنستاجرام</h3>
+      <p>حملات إبداعية على إنستاجرام بمحتوى مرئي مميز وقصص جذابة تزيد من التفاعل والمبيعات.</p>
+      <div class="tags">
+        <span class="tag">Stories Ads</span>
+        <span class="tag">Reels</span>
+        <span class="tag">محتوى إبداعي</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:rgba(0,212,255,0.15); color:var(--primary);">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <h3>التجارة الإلكترونية</h3>
+      <p>بناء متاجر إلكترونية احترافية، تحسين معدلات التحويل، وإدارة منصات البيع بالتجزئة الرقمية.</p>
+      <div class="tags">
+        <span class="tag">متجر إلكتروني</span>
+        <span class="tag">Shopify</span>
+        <span class="tag">WooCommerce</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:rgba(124,58,237,0.15); color:#7c3aed;">
+        <i class="fas fa-video"></i>
+      </div>
+      <h3>تصميم الفيديوهات</h3>
+      <p>إنتاج محتوى فيديو احترافي للإعلانات والريلز والقصص، مع موشن جرافيك ومونتاج احترافي.</p>
+      <div class="tags">
+        <span class="tag">موشن جرافيك</span>
+        <span class="tag">Reels</span>
+        <span class="tag">إعلانات فيديو</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:rgba(255,107,53,0.15); color:var(--secondary);">
+        <i class="fas fa-pencil-alt"></i>
+      </div>
+      <h3>إدارة المحتوى</h3>
+      <p>تخطيط وإنشاء محتوى جذاب لجميع منصات التواصل الاجتماعي بشكل منتظم وباستراتيجية واضحة.</p>
+      <div class="tags">
+        <span class="tag">جدول نشر</span>
+        <span class="tag">تصاميم</span>
+        <span class="tag">كوبي رايتنج</span>
+      </div>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon" style="background:rgba(16,185,129,0.15); color:#10b981;">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <h3>تحليل وتقارير</h3>
+      <p>تقارير أداء تفصيلية، تحليل المنافسين، وتوصيات استراتيجية لتطوير حضورك الرقمي.</p>
+      <div class="tags">
+        <span class="tag">Analytics</span>
+        <span class="tag">تقارير أسبوعية</span>
+        <span class="tag">استراتيجية</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PLATFORMS -->
+<section id="social">
+  <div class="section-header fade-up">
+    <span class="section-tag"><i class="fas fa-share-alt"></i> المنصات</span>
+    <h2 class="section-title">نغطي جميع <span class="c">منصات التواصل</span></h2>
+    <p class="section-sub">خبرة واسعة في جميع المنصات الرئيسية لضمان وصولك إلى أكبر جمهور ممكن</p>
+  </div>
+  <div class="platforms-grid fade-up">
+    <div class="platform-card pc-fb">
+      <i class="fab fa-facebook-f"></i>
+      <span>فيسبوك</span>
+    </div>
+    <div class="platform-card pc-ig">
+      <i class="fab fa-instagram"></i>
+      <span>إنستاجرام</span>
+    </div>
+    <div class="platform-card pc-tt">
+      <i class="fab fa-tiktok"></i>
+      <span>تيك توك</span>
+    </div>
+    <div class="platform-card pc-yt">
+      <i class="fab fa-youtube"></i>
+      <span>يوتيوب</span>
+    </div>
+    <div class="platform-card pc-snap">
+      <i class="fab fa-snapchat"></i>
+      <span>سناب شات</span>
+    </div>
+    <div class="platform-card pc-tw">
+      <i class="fab fa-twitter"></i>
+      <span>تويتر/X</span>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="section-header fade-up">
+    <span class="section-tag"><i class="fas fa-box"></i> الباقات</span>
+    <h2 class="section-title">اختر الباقة <span class="c">المناسبة لك</span></h2>
+    <p class="section-sub">باقات مرنة تناسب جميع الأحجام والميزانيات</p>
+  </div>
+  <div class="packages-grid">
+    <div class="pkg-card fade-up">
+      <div class="pkg-icon" style="background:rgba(94,234,212,0.15); color:#5eead4;">
+        <i class="fas fa-seedling"></i>
+      </div>
+      <div class="pkg-name">الباقة الأساسية</div>
+      <div class="pkg-desc">مثالية للأعمال الناشئة</div>
+      <div class="pkg-price"><span>$</span>49</div>
+      <div class="pkg-period">/ شهرياً</div>
+      <ul class="pkg-features">
+        <li><i class="fas fa-check-circle"></i> إدارة منصة واحدة</li>
+        <li><i class="fas fa-check-circle"></i> 12 منشور شهرياً</li>
+        <li><i class="fas fa-check-circle"></i> تصميم 4 قوالب</li>
+        <li><i class="fas fa-check-circle"></i> تقرير شهري</li>
+        <li><i class="fas fa-check-circle"></i> دعم واتساب</li>
+      </ul>
+      <button class="btn-pkg btn-pkg-outline" onclick="contactWhatsapp()">ابدأ الآن</button>
+    </div>
+
+    <div class="pkg-card featured fade-up">
+      <div class="pkg-badge">⭐ الأكثر طلباً</div>
+      <div class="pkg-icon" style="background:rgba(0,212,255,0.15); color:var(--primary);">
+        <i class="fas fa-rocket"></i>
+      </div>
+      <div class="pkg-name">الباقة الاحترافية</div>
+      <div class="pkg-desc">الأنسب لمعظم الأعمال</div>
+      <div class="pkg-price"><span>$</span>149</div>
+      <div class="pkg-period">/ شهرياً</div>
+      <ul class="pkg-features">
+        <li><i class="fas fa-check-circle"></i> إدارة 3 منصات</li>
+        <li><i class="fas fa-check-circle"></i> 30 منشور شهرياً</li>
+        <li><i class="fas fa-check-circle"></i> 2 فيديو إعلاني</li>
+        <li><i class="fas fa-check-circle"></i> إدارة إعلانات مدفوعة</li>
+        <li><i class="fas fa-check-circle"></i> تقارير أسبوعية</li>
+        <li><i class="fas fa-check-circle"></i> دعم 24/7</li>
+      </ul>
+      <button class="btn-pkg btn-pkg-filled" onclick="contactWhatsapp()">ابدأ الآن</button>
+    </div>
+
+    <div class="pkg-card fade-up">
+      <div class="pkg-icon" style="background:rgba(255,107,53,0.15); color:var(--secondary);">
+        <i class="fas fa-crown"></i>
+      </div>
+      <div class="pkg-name">الباقة المتميزة</div>
+      <div class="pkg-desc">للأعمال الكبيرة والمتنامية</div>
+      <div class="pkg-price"><span>$</span>299</div>
+      <div class="pkg-period">/ شهرياً</div>
+      <ul class="pkg-features">
+        <li><i class="fas fa-check-circle"></i> إدارة جميع المنصات</li>
+        <li><i class="fas fa-check-circle"></i> منشورات يومية</li>
+        <li><i class="fas fa-check-circle"></i> 8 فيديوهات شهرياً</li>
+        <li><i class="fas fa-check-circle"></i> متجر إلكتروني كامل</li>
+        <li><i class="fas fa-check-circle"></i> مدير حساب مخصص</li>
+        <li><i class="fas fa-check-circle"></i> دعم أولوية فوري</li>
+      </ul>
+      <button class="btn-pkg btn-pkg-outline" onclick="contactWhatsapp()">ابدأ الآن</button>
+    </div>
+  </div>
+</section>
+
+<!-- PAYMENT -->
+<section id="payment">
+  <div class="section-header fade-up">
+    <span class="section-tag"><i class="fas fa-credit-card"></i> الدفع</span>
+    <h2 class="section-title">طرق دفع <span class="c">آمنة ومتعددة</span></h2>
+    <p class="section-sub">ندعم طرق الدفع الأكثر استخداماً لراحتك</p>
+  </div>
+
+  <div class="payment-methods fade-up">
+    <div class="pay-card">
+      <div class="pay-icon">💳</div>
+      <div class="pay-info">
+        <strong>بطاقة بنكية</strong>
+        <small>Visa / Mastercard</small>
+      </div>
+    </div>
+    <div class="pay-card" style="border-color: rgba(240,185,11,0.3);">
+      <div class="pay-icon">🟡</div>
+      <div class="pay-info">
+        <strong style="color:#f0b90b;">Binance Pay</strong>
+        <small>USDT / BNB / وغيرها</small>
+      </div>
+    </div>
+    <div class="pay-card" style="border-color: rgba(37,211,102,0.3);">
+      <div class="pay-icon">💚</div>
+      <div class="pay-info">
+        <strong style="color:#25d366;">PayPal</strong>
+        <small>دفع آمن وسريع</small>
+      </div>
+    </div>
+    <div class="pay-card" style="border-color: rgba(0,212,255,0.3);">
+      <div class="pay-icon">💵</div>
+      <div class="pay-info">
+        <strong>تحويل بنكي</strong>
+        <small>SWIFT / SEPA</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="pay-binance-id fade-up">
+    <div class="binance-logo">⬡ Binance Pay</div>
+    <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0.5rem;">معرّف Binance للدفع المباشر</p>
+    <div class="pay-id-box" onclick="copyBinanceId()">
+      782102873
+      <small>انقر للنسخ</small>
+    </div>
+    <p style="color: var(--text-muted); font-size: 0.82rem;">
+      <i class="fas fa-shield-alt" style="color: #f0b90b;"></i>
+      مدفوعات آمنة ومشفرة عبر شبكة Binance
+    </p>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support">
+  <div class="section-header fade-up">
+    <span class="section-tag"><i class="fas fa-headset"></i> الدعم</span>
+    <h2 class="section-title">نحن هنا <span class="c">دائماً</span> لمساعدتك</h2>
+    <p class="section-sub">فريق دعم متخصص متاح على مدار الساعة</p>
+  </div>
+  <div class="support-grid fade-up">
+    <a href="https://wa.me/2130556120316" class="support-card" target="_blank" style="border-color: rgba(37,211,102,0.2);">
+      <div class="sc-icon" style="background:rgba(37,211,102,0.15); color:#25d366;">
+        <i class="fab fa-whatsapp"></i>
+      </div>
+      <h4>واتساب</h4>
+      <p>تواصل فوري وسريع عبر واتساب للاستفسارات والدعم الفني</p>
+    </a>
+    <a href="mailto:contact@digipro.com" class="support-card" style="border-color: rgba(0,212,255,0.2);">
+      <div class="sc-icon" style="background:rgba(0,212,255,0.15); color:var(--primary);">
+        <i class="fas fa-envelope"></i>
+      </div>
+      <h4>البريد الإلكتروني</h4>
+      <p>أرسل لنا بريداً إلكترونياً وسيتم الرد خلال ساعة واحدة</p>
+    </a>
+    <div class="support-card" style="border-color: rgba(255,107,53,0.2);">
+      <div class="sc-icon" style="background:rgba(255,107,53,0.15); color:var(--secondary);">
+        <i class="fas fa-comments"></i>
+      </div>
+      <h4>الدردشة المباشرة</h4>
+      <p>دردشة حية على الموقع للإجابة الفورية على جميع أسئلتك</p>
+    </div>
+    <div class="support-card" style="border-color: rgba(124,58,237,0.2);">
+      <div class="sc-icon" style="background:rgba(124,58,237,0.15); color:#7c3aed;">
+        <i class="fas fa-clock"></i>
+      </div>
+      <h4>دعم 24/7</h4>
+      <p>متاحون على مدار الساعة طوال أيام الأسبوع لخدمتك</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header fade-up">
+    <span class="section-tag"><i class="fas fa-paper-plane"></i> تواصل</span>
+    <h2 class="section-title">ابدأ مشروعك <span class="c">معنا اليوم</span></h2>
+  </div>
+  <div class="contact-wrapper">
+    <div class="contact-info fade-up">
+      <h3>تحدث معنا</h3>
+      <p>هل أنت مستعد لتطوير أعمالك الرقمية؟ تواصل معنا الآن وسنرسل لك عرضاً مخصصاً خلال 24 ساعة.</p>
+      <div class="contact-items">
+        <a href="https://wa.me/2130556120316" class="contact-item" target="_blank">
+          <div class="ci-icon" style="background:rgba(37,211,102,0.15); color:#25d366;">
+            <i class="fab fa-whatsapp"></i>
+          </div>
+          <div class="ci-text">
+            <strong>واتساب</strong>
+            <span>+213 0556 120 316</span>
+          </div>
+        </a>
+        <div class="contact-item">
+          <div class="ci-icon" style="background:rgba(240,185,11,0.15); color:#f0b90b;">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <div class="ci-text">
+            <strong>Binance ID</strong>
+            <span>782102873</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="ci-icon" style="background:rgba(0,212,255,0.15); color:var(--primary);">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="ci-text">
+            <strong>ساعات العمل</strong>
+            <span>24/7 — دائماً متاحون</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form fade-up">
+      <h3><i class="fas fa-paper-plane"></i> أرسل طلبك</h3>
+      <div class="form-group">
+        <label>الاسم الكامل</label>
+        <input type="text" placeholder="اسمك هنا...">
+      </div>
+      <div class="form-group">
+        <label>رقم الواتساب</label>
+        <input type="tel" placeholder="+213...">
+      </div>
+      <div class="form-group">
+        <label>الخدمة المطلوبة</label>
+        <select>
+          <option>اختر الخدمة</option>
+          <option>إعلانات فيسبوك / إنستاجرام</option>
+          <option>إدارة مواقع التواصل</option>
+          <option>تصميم فيديوهات</option>
+          <option>متجر إلكتروني</option>
+          <option>باقة كاملة</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>تفاصيل إضافية</label>
+        <textarea placeholder="اشرح لنا مشروعك..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">
+        <i class="fas fa-paper-plane"></i>
+        إرسال الطلب
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">DigiPro<span style="color: var(--secondary); -webkit-text-fill-color: var(--secondary);">.</span></span>
+      <p>وكالة تسويق رقمي متكاملة تساعدك على بناء حضور قوي على الإنترنت وتحقيق أهدافك التجارية.</p>
+      <div class="footer-socials">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/2130556120316" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>الخدمات</h5>
+      <ul>
+        <li><a href="#">إعلانات فيسبوك</a></li>
+        <li><a href="#">إعلانات إنستاجرام</a></li>
+        <li><a href="#">التجارة الإلكترونية</a></li>
+        <li><a href="#">تصميم فيديوهات</a></li>
+        <li><a href="#">إدارة المحتوى</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>الباقات</h5>
+      <ul>
+        <li><a href="#">الباقة الأساسية</a></li>
+        <li><a href="#">الباقة الاحترافية</a></li>
+        <li><a href="#">الباقة المتميزة</a></li>
+        <li><a href="#">باقات مخصصة</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>تواصل</h5>
+      <ul>
+        <li><a href="https://wa.me/2130556120316">واتساب: +213 05 56 12 03 16</a></li>
+        <li><a href="#">Binance ID: 782102873</a></li>
+        <li><a href="#">الدعم 24/7</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 DigiPro Agency. جميع الحقوق محفوظة.</p>
+    <p>صُنع بـ ❤️ للنجاح الرقمي</p>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Copy Binance ID
+  function copyBinanceId() {
+    navigator.clipboard.writeText('782102873').then(() => showToast('✅ تم نسخ معرّف Binance: 782102873'));
+  }
+
+  // WhatsApp contact
+  function contactWhatsapp() {
+    window.open('https://wa.me/2130556120316?text=مرحباً، أريد الاستفسار عن خدماتكم', '_blank');
+  }
+
+  // Form submit
+  function submitForm() {
+    const name = document.querySelector('input[type=text]').value;
+    const phone = document.querySelector('input[type=tel]').value;
+    const service = document.querySelector('select').value;
+    if (!name || !phone) { showToast('⚠️ يرجى تعبئة الاسم ورقم الواتساب'); return; }
+    const msg = encodeURIComponent(`مرحباً، اسمي: ${name}\nرقمي: ${phone}\nالخدمة: ${service}\nأريد الاستفسار عن خدماتكم`);
+    window.open(`https://wa.me/2130556120316?text=${msg}`, '_blank');
+    showToast('✅ تم إرسال طلبك! سيتم التواصل معك قريباً');
+  }
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerHTML = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // Navbar scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(5,11,24,0.97)'
+      : 'rgba(5,11,24,0.85)';
+  });
+</script>
+</body>
+</html>
